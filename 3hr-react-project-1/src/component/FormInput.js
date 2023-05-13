@@ -9,32 +9,25 @@ const FormInput = (props) => {
 
     const uidHandler = (e) => {
         setUID(e.target.value);
-        // console.log(e.target.value);
     }
     const priceHandler = (e) => {
         setPrice(e.target.value)
-        // console.log(e.target.value);
     }
     const dishHandler = (e) => {
         setDish(e.target.value)
-        // console.log(e.target.value);
     }
     const tableHandler = (e) => {
         setTable(e.target.value);
-        // console.log(e.target.value);
     }
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        // console.log(e.target);
-        // console.log("in heres");
         const itemDets = {
-            id : +Uid,
-            price : +price,
+            id : Uid,
+            price : price,
             dish : dish,
             table : table
         }
         props.onSaveItemsData(itemDets);
-        // console.log(itemDets);
     }
     return (
         <form onSubmit={handleFormSubmit}>
