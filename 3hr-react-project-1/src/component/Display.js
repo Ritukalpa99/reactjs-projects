@@ -22,7 +22,7 @@ const Display = (props) => {
               {groupedTables[table].map((item) => {
                 return (
                   <li key={item.id}>
-                    {item.name} {item.age} {item.table}
+                    {item.price} -- {item.dish} -- {item.table}
                     <button onClick={() => props.onDelete(item.id)}>del</button>
                   </li>
                 );
@@ -31,14 +31,6 @@ const Display = (props) => {
           </div>
         );
       })}
-      {/* {props.data.map((item) => {
-        return (
-          <li key={item.id}>
-            {item.name} {item.age} {item.table}
-            <button onClick={() => props.onDelete(item.id)}>del </button>
-          </li>
-        );
-      })} */}
     </>
   );
 };
