@@ -4,7 +4,10 @@ function App() {
   return (
     <>
       <Header />
-      <Meals />
+      <main>
+        <Meals />
+      </main>
+      
     </>
   );
 }

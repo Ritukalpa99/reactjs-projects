@@ -1,0 +1,32 @@
+.meals {
+    max-width: 60rem;
+    width: 90%;
+    margin: 2rem auto;
+    animation: meals-appear 1s ease-out forwards;
+  }
+  
+    .meals ul {
+    list-style: none;
+    background-color: white;
+    border-radius: 2%;
+    width: 70%;
+    margin: auto;
+  } 
+  .meals li {
+    border-bottom: 1px solid black;
+  }
+  .price {
+    color: red;
+    font-weight: bold;
+  }
+   /*@keyframes meals-appear {
+    from {
+      opacity: 0;
+      transform: translateY(3rem);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }  */
