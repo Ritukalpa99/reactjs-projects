@@ -4,27 +4,27 @@ import MealItem from "./MealItem/MealItem";
 const DUMMY_MEALS = [
 	{
 		id: "m1",
-		name: "Sushi",
-		description: "Finest fish and veggies",
-		price: 22.99,
+		name: "Paneer Tikka",
+		description: "Tantalizing Grilled Paneer",
+		price: 250,
 	},
 	{
 		id: "m2",
-		name: "Schnitzel",
-		description: "A german specialty!",
-		price: 16.5,
+		name: "Dal Makhani",
+		description: "Creamy Lentil Delight",
+		price: 200,
 	},
 	{
 		id: "m3",
-		name: "Barbecue Burger",
-		description: "American, raw, meaty",
-		price: 12.99,
+		name: "Malai Kofta",
+		description: "Velvety Paneer Balls",
+		price: 300,
 	},
 	{
 		id: "m4",
-		name: "Green Bowl",
-		description: "Healthy...and green...",
-		price: 18.99,
+		name: "Aloo Gobi",
+		description: "Potato Cauliflower Medley",
+		price: 150,
 	},
 ];
 const AvailableMeals = () => {
