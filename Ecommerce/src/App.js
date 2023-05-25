@@ -1,7 +1,8 @@
 import { Row } from "react-bootstrap";
 import Content from "./components/Content";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import Footer from "./components/Footer";
+import Cart from "./components/Cart/Cart";
 
 const productsArr = [
 	{
@@ -32,15 +33,16 @@ const productsArr = [
 
 const App = () => {
 	return (
-		<>
+		<div>
 			<Header />
-            <Row className="justify-content-center">
+             <Row className="justify-content-center">
             {productsArr.map((item) => {
                 return <Content title={item.title} price={item.price} src={item.imageUrl}/>
             })}
             </Row>
+			<Cart />
 			<Footer />
-		</>
+		</div>
 	);
 };
 

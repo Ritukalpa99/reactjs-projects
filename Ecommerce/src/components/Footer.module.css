@@ -1,0 +1,19 @@
+.Footer {
+    background-color: aqua;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+}
+.Footer h1 {
+    color : white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: xx-large;
+    font-weight: 600;
+}
+.links {
+    display: flex;
+}
+.links div {
+    padding: 1rem;
+}

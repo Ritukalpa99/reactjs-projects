@@ -1,0 +1,16 @@
+.title {
+    background-color: grey;
+    margin-top: 3rem;
+    padding: 1rem;
+    height: 10rem;
+    z-index: 2;
+}
+.title h1 {
+    font-size: 4rem;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+header {
+    text-align: center;
+}
