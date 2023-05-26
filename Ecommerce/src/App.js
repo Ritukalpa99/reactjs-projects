@@ -1,8 +1,8 @@
-import { Row } from "react-bootstrap";
-import Content from "./components/Content";
+import Content from "./components/Content/Content";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer";
 import Cart from "./components/Cart/Cart";
+import { useState } from "react";
 
 const productsArr = [
 	{
@@ -32,15 +32,21 @@ const productsArr = [
 ];
 
 const App = () => {
+
+	const [isCartOpen, setIsCartOpen] = useState(false);
+
+	const showCartHandler = () => {
+		setIsCartOpen(true);
+	}
+
+	const hideCartHandler = () => {
+		setIsCartOpen(false);
+	}
 	return (
 		<div>
-			<Header />
-             <Row className="justify-content-center">
-            {productsArr.map((item) => {
-                return <Content title={item.title} price={item.price} src={item.imageUrl}/>
-            })}
-            </Row>
-			<Cart />
+			<Header onShowCart={showCartHandler}/>
+			<Content items={productsArr}/>
+			{ isCartOpen && <Cart onClose={hideCartHandler}/>}
 			<Footer />
 		</div>
 	);

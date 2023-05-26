@@ -1,13 +1,10 @@
 import classes from "./Nav.module.css"
-const Nav = () => {
-    const handleClick = () => {
-        // alert('clieck here')
-    }
+const Nav = (props) => {
     return <ul>
         <li>Home</li>
         <li>Store</li>
         <li>About</li>
-        <div className={classes["cart-holder"]} onClick={handleClick}>
+        <div className={classes["cart-holder"]} onClick={props.onClick}>
             <div>Cart</div>
             <span>0</span>
         </div>
