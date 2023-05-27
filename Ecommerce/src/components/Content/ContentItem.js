@@ -1,5 +1,13 @@
 import classes from "./ContentItem.module.css"
+import { useContext } from "react";
+import CartContext from "../../store/cart-context";
 const ContentItem = (props) => {
+    const cartCtx = useContext(CartContext)
+
+    const handleAddToCart = (item) => {
+        cartCtx.addToCart(item);
+    }
+
 	return (
 		<div className={classes.container}>
 			<h3>{props.item.title}</h3>
@@ -11,7 +19,7 @@ const ContentItem = (props) => {
                     $ 
                     <span>{props.item.price}</span>
                 </span>
-                <button>ADD TO CART</button>
+                <button onClick={() => handleAddToCart(props.item)}>ADD TO CART</button>
             </div>
 		</div>
 	);

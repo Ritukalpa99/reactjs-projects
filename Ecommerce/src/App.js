@@ -3,7 +3,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer";
 import Cart from "./components/Cart/Cart";
 import { useState } from "react";
-
+import { CartProvider } from "./store/cart-context";
 const productsArr = [
 	{
 		title: "Colors",
@@ -43,12 +43,12 @@ const App = () => {
 		setIsCartOpen(false);
 	}
 	return (
-		<div>
+		<CartProvider>
 			<Header onShowCart={showCartHandler}/>
 			<Content items={productsArr}/>
 			{ isCartOpen && <Cart onClose={hideCartHandler}/>}
 			<Footer />
-		</div>
+		</CartProvider>
 	);
 };
 
