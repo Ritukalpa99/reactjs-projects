@@ -2,8 +2,10 @@ import Content from "./components/Content/Content";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer";
 import Cart from "./components/Cart/Cart";
+import About from "./components/About/About";
 import { useState } from "react";
 import { CartProvider } from "./store/cart-context";
+import { createBrowserRouter, RouterProvider} from "react-router-dom";
 const productsArr = [
 	{
 		title: "Colors",
@@ -31,6 +33,11 @@ const productsArr = [
 	},
 ];
 
+const router = createBrowserRouter([
+	{path : '/', element : <Content items={productsArr}/>},
+	{path : '/about', element : <About />}
+])
+
 const App = () => {
 
 	const [isCartOpen, setIsCartOpen] = useState(false);
@@ -45,7 +52,7 @@ const App = () => {
 	return (
 		<CartProvider>
 			<Header onShowCart={showCartHandler}/>
-			<Content items={productsArr}/>
+			<RouterProvider router={router}/>
 			{ isCartOpen && <Cart onClose={hideCartHandler}/>}
 			<Footer />
 		</CartProvider>
