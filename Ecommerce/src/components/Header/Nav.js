@@ -11,12 +11,12 @@ const Nav = (props) => {
     return <ul className={classes['nav-list']}>
         <li>
             {/* <a href="/">Home</a> */}
-            <NavLink to="/">HOME</NavLink>
+            <NavLink to="/home">HOME</NavLink>
             {/* <Link to="/">HOME</Link> */}
         </li>
         <li>
             {/* <a href="/store">Home</a> */}
-            <NavLink to="/store">STORE</NavLink>
+            <NavLink to="/">STORE</NavLink>
             {/* <Link to="/store">STORE</Link> */}
         </li>
         <li>

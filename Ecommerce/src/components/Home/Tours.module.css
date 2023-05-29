@@ -1,0 +1,14 @@
+* {
+    box-sizing: border-box;
+}
+.tours {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 30px;
+}
+
+.title {
+    text-align: center;
+    padding: 20px;
+    font-size: 30px;
+}
