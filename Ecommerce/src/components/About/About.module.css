@@ -1,0 +1,25 @@
+.about {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 22px;
+}
+
+.about h2 {
+    text-align: center;
+    padding: 20px;
+    font-size: 30px;
+}
+
+.text .band-pic {
+    float: left;
+    margin: 20px 50px;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+.text p {
+    font-size: 17px;
+    margin: 20px;
+    color: #777;
+}

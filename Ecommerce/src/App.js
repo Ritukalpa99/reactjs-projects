@@ -5,7 +5,8 @@ import Cart from "./components/Cart/Cart";
 import About from "./components/About/About";
 import { useState } from "react";
 import { CartProvider } from "./store/cart-context";
-import { createBrowserRouter, RouterProvider} from "react-router-dom";
+// import { createBrowserRouter, RouterProvider} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 const productsArr = [
 	{
 		title: "Colors",
@@ -33,28 +34,33 @@ const productsArr = [
 	},
 ];
 
-const router = createBrowserRouter([
-	{path : '/', element : <Content items={productsArr}/>},
-	{path : '/about', element : <About />}
-])
+// const router = createBrowserRouter([
+// 	{path : '/', element : <Content items={productsArr}/>},
+// 	{path : '/about', element : <About />}
+// ])
 
 const App = () => {
-
 	const [isCartOpen, setIsCartOpen] = useState(false);
 
 	const showCartHandler = () => {
 		setIsCartOpen(true);
-	}
+	};
 
 	const hideCartHandler = () => {
 		setIsCartOpen(false);
-	}
+	};
 	return (
 		<CartProvider>
-			<Header onShowCart={showCartHandler}/>
-			<RouterProvider router={router}/>
-			{ isCartOpen && <Cart onClose={hideCartHandler}/>}
-			<Footer />
+			<Router>
+				<Header onShowCart={showCartHandler} />
+				{isCartOpen && <Cart onClose={hideCartHandler} />}
+				{/* <RouterProvider router={router}/> */}
+				<Routes>
+					<Route path="/" element={<Content items={productsArr} />} />
+					<Route path="/about" element={<About />} />
+				</Routes>
+				<Footer />
+			</Router>
 		</CartProvider>
 	);
 };

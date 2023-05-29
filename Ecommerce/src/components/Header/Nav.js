@@ -1,5 +1,5 @@
 import classes from "./Nav.module.css"
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import CartContext from "../../store/cart-context";
 const Nav = (props) => {
@@ -8,18 +8,21 @@ const Nav = (props) => {
 
     const itemsCount = cartCtx.cartItems.length;
 
-    return <ul>
+    return <ul className={classes['nav-list']}>
         <li>
-            
-            <Link to="/">HOME</Link>
+            {/* <a href="/">Home</a> */}
+            <NavLink to="/">HOME</NavLink>
+            {/* <Link to="/">HOME</Link> */}
         </li>
         <li>
-            
-            <Link to="/store">STORE</Link>
+            {/* <a href="/store">Home</a> */}
+            <NavLink to="/store">STORE</NavLink>
+            {/* <Link to="/store">STORE</Link> */}
         </li>
         <li>
-            
-            <Link href="/about">ABOUT</Link>
+            {/* <a href="/about">Home</a> */}
+            <NavLink to="/about">ABOUT</NavLink>
+            {/* <Link href="/about">ABOUT</Link> */}
         </li>
         <div className={classes["cart-holder"]} onClick={props.onClick}>
             <div>Cart</div>
