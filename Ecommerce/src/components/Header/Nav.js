@@ -24,6 +24,9 @@ const Nav = (props) => {
             <NavLink to="/about">ABOUT</NavLink>
             {/* <Link href="/about">ABOUT</Link> */}
         </li>
+        <li>
+        <NavLink to="/contact">CONTACT US</NavLink>
+        </li>
         <div className={classes["cart-holder"]} onClick={props.onClick}>
             <div>Cart</div>
             <span>{itemsCount}</span>

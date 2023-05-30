@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Cart from "./components/Cart/Cart";
 import About from "./components/About/About";
 import Home from "./components/Home/Home";
+import ContactUs from "./components/Contact/ContactUs";
 import { useState } from "react";
 import { CartProvider } from "./store/cart-context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -53,6 +54,7 @@ const App = () => {
 					<Route path="/" element={<Content items={productsArr} />} />
 					<Route path="/about" element={<About />} />
 					<Route path="/home" element={<Home />} />
+					<Route path="/contact" element={<ContactUs />} />
 				</Routes>
 				<Footer />
 			</Router>
