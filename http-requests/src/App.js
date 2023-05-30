@@ -15,19 +15,21 @@ function App() {
 		setError(null);
 
 		try {
-			const res = await fetch("https://swapi.dev/api/films");
+			const res = await fetch("https://react-http-5ac72-default-rtdb.firebaseio.com/movies.json");
 
 			if (res.ok) {
 				const data = await res.json();
-				const transformedMovies = data.results.map((movieData) => {
-					return {
-						id: movieData.episode_id,
-						title: movieData.title,
-						openingText: movieData.opening_crawl,
-						releaseDate: movieData.release_date,
-					};
-				});
-				setMovies(transformedMovies);
+
+				const loadedMovies = [];
+				for (const key in data) {
+					loadedMovies.push({
+						id : key,
+						title : data[key].title,
+						openingText : data[key].openingText,
+						releaseDate : data[key].releaseDate
+					})
+				}
+				setMovies(loadedMovies);
 				clearTimeout(retryTimer);
 			} else {
 				throw new Error(`Something went wrong!....Retrying`);
@@ -50,8 +52,16 @@ function App() {
 		setRetryTimer(timer);
 	};
 
-	function addMoveHandler(movie) {
-		console.log(movie);
+	async function addMoveHandler(movie) {
+		const response = await fetch("https://react-http-5ac72-default-rtdb.firebaseio.com/movies.json", {
+			method : "POST",
+			body : JSON.stringify(movie),
+			headers : {
+				'Content-Type': 'application/json'
+			}
+		})
+
+		const data = await response.json();
 	}
 
 	const cancelFetchHandler = () => {
@@ -64,6 +74,8 @@ function App() {
 			clearTimeout(retryTimer);
 		};
 	}, [retryTimer]);
+
+
 	return (
 		<React.Fragment>
 			<section>
