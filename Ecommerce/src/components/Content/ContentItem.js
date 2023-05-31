@@ -1,6 +1,7 @@
 import classes from "./ContentItem.module.css"
 import { useContext } from "react";
 import CartContext from "../../store/cart-context";
+import { Link } from "react-router-dom";
 const ContentItem = (props) => {
     const cartCtx = useContext(CartContext)
 
@@ -11,9 +12,11 @@ const ContentItem = (props) => {
 	return (
 		<div className={classes.container}>
 			<h3>{props.item.title}</h3>
+            <Link to={`/product-detail/${props.item.title}`}>
             <div className={classes['image-container']}>
                 <img className={classes.image} src={props.item.imageUrl} alt="some"/>
             </div>
+            </Link>
             <div className={classes['product-details']}>
                 <span>
                     $ 

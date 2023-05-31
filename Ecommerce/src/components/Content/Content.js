@@ -6,6 +6,7 @@ const Content = (props) => {
         <div className={classes['music-content']}>
          {props.items.map((item) => {
             return <ContentItem item={item}/>
+            
         })} 
         
         </div>

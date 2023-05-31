@@ -39,7 +39,9 @@
 	align-items: center;
 	justify-content: space-between;
 }
-
+.product-details span {
+	color: black;
+}
 .product-details button {
 	cursor: pointer;
 	padding: 8px;
