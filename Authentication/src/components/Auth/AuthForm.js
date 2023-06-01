@@ -1,5 +1,5 @@
 import { useState, useRef, useContext } from "react";
-
+import { useHistory } from "react-router-dom";
 import classes from "./AuthForm.module.css";
 import AuthContext from "../../store/auth-context";
 
@@ -7,8 +7,9 @@ const AuthForm = () => {
 	const [isLogin, setIsLogin] = useState(true);
 	const [isLoading, setIsLoading] = useState(false);
 
-  const authCtx = useContext(AuthContext)
+	const authCtx = useContext(AuthContext);
 
+	const history = useHistory();
 	const emailInputRef = useRef();
 	const passwordInputRef = useRef();
 
@@ -19,52 +20,53 @@ const AuthForm = () => {
 	const submitHandler = (event) => {
 		event.preventDefault();
 
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
+		const enteredEmail = emailInputRef.current.value;
+		const enteredPassword = passwordInputRef.current.value;
 
-    // optional: Add validation
+		// optional: Add validation
 
-    setIsLoading(true);
-    let url;
-    if (isLogin) {
-      url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAkB-O7HrlKHlMd86xHpMOhh2U7L8SJMhk';
-    } else {
-      url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAkB-O7HrlKHlMd86xHpMOhh2U7L8SJMhk';
-    }
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify({
-        email: enteredEmail,
-        password: enteredPassword,
-        returnSecureToken: true,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => {
-        setIsLoading(false);
-        if (res.ok) {
-          return res.json();
-        } else {
-          return res.json().then((data) => {
-            let errorMessage = 'Authentication failed!';
-            // if (data && data.error && data.error.message) {
-            //   errorMessage = data.error.message;
-            // }
+		setIsLoading(true);
+		let url;
+		if (isLogin) {
+			url =
+				"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAkB-O7HrlKHlMd86xHpMOhh2U7L8SJMhk";
+		} else {
+			url =
+				"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAkB-O7HrlKHlMd86xHpMOhh2U7L8SJMhk";
+		}
+		fetch(url, {
+			method: "POST",
+			body: JSON.stringify({
+				email: enteredEmail,
+				password: enteredPassword,
+				returnSecureToken: true,
+			}),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+			.then((res) => {
+				setIsLoading(false);
+				if (res.ok) {
+					return res.json();
+				} else {
+					return res.json().then((data) => {
+						let errorMessage = "Authentication failed!";
+						// if (data && data.error && data.error.message) {
+						//   errorMessage = data.error.message;
+						// }
 
-            throw new Error(errorMessage);
-          });
-        }
-      })
-      .then((data) => {
-        authCtx.login(data.idToken);
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
+						throw new Error(errorMessage);
+					});
+				}
+			})
+			.then((data) => {
+				authCtx.login(data.idToken);
+				history.replace('/');
+			})
+			.catch((err) => {
+				alert(err.message);
+			});
 	};
 
 	return (
