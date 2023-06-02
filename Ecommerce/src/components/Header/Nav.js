@@ -2,9 +2,10 @@ import classes from "./Nav.module.css";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import CartContext from "../../store/cart-context";
+import AuthContext from "../../store/auth-context";
 const Nav = (props) => {
 	const cartCtx = useContext(CartContext);
-
+	const authCtx = useContext(AuthContext);
 	const itemsCount = cartCtx.cartItems.length;
 
 	return (
@@ -25,15 +26,18 @@ const Nav = (props) => {
 				{/* <Link href="/about">ABOUT</Link> */}
 			</li>
 			<li>
-				<NavLink to="/login">LOGIN</NavLink>
+				{!authCtx.isLoggedIn && <NavLink to="/login">LOGIN</NavLink>}
+				{authCtx.isLoggedIn && <NavLink to="/logout">LOGOUT</NavLink>}
 			</li>
 			<li>
 				<NavLink to="/contact">CONTACT US</NavLink>
 			</li>
+			{authCtx.isLoggedIn && 
 			<div className={classes["cart-holder"]} onClick={props.onClick}>
 				<div>Cart</div>
 				<span>{itemsCount}</span>
 			</div>
+			}
 		</ul>
 	);
 };

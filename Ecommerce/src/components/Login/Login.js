@@ -33,7 +33,7 @@ const Login = () => {
 			alert(err.message);
 		}
 	};
-
+	// console.log(authCtx.isLoggedIn);
 	const submitHandler = (event) => {
 		event.preventDefault();
 
@@ -43,25 +43,30 @@ const Login = () => {
 		// alert(`You details are ${enteredEmail}, ${enteredPassword}`);
 	};
 	return (
-		<form onSubmit={submitHandler}>
-			<div className={classes.control}>
-				<lable htmlFor="email">E-Mail</lable>
-				<input type="email" id="mail" required ref={emailRef} />
-			</div>
-			<div className={classes.control}>
-				<lable htmlFor="password">Your Password</lable>
-				<input
-					type="password"
-					id="password"
-					required
-					minLength="7"
-					ref={passwordRef}
-				/>
-			</div>
-			<button type="submit" className={classes.submit}>
-				Submit{" "}
-			</button>
-		</form>
+		<div className={classes.login}>
+			{authCtx.isLoggedIn && <h1>Welcome back!</h1>}
+			{!authCtx.isLoggedIn && (
+				<form onSubmit={submitHandler}>
+					<div className={classes.control}>
+						<lable htmlFor="email">E-Mail</lable>
+						<input type="email" id="mail" required ref={emailRef} />
+					</div>
+					<div className={classes.control}>
+						<lable htmlFor="password">Your Password</lable>
+						<input
+							type="password"
+							id="password"
+							required
+							minLength="6"
+							ref={passwordRef}
+						/>
+					</div>
+					<button type="submit" className={classes.submit}>
+						Login{" "}
+					</button>
+				</form>
+			)}
+		</div>
 	);
 };
 

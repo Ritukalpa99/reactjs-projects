@@ -3,6 +3,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer";
 import Cart from "./components/Cart/Cart";
 import About from "./components/About/About";
+import Logout from "./components/Login/Logout";
 import Home from "./components/Home/Home";
 import ContactUs from "./components/Contact/ContactUs";
 import ProductDetails from "./components/Content/Products/ProductDetails";
@@ -62,6 +63,7 @@ const App = () => {
 						<Route path="/about" element={<About />} />
 						<Route path="/home" element={<Home />} />
 						<Route path="/login" element={<Login />} />
+						<Route path="/logout" element={<Logout />} />
 						<Route path="/contact" element={<ContactUs />} />
 						<Route
 							path="/product-detail/:Id"

@@ -1,38 +1,68 @@
-.control {
-    margin: 1rem 0;
-  }
-  
-.control lable {
-    display: block;
-    width: 100%;
-    font-weight: bold;
-    left: 100px;
-    text-align: center;
+.login h1 {
+	background-color: rebeccapurple;
+	text-align: center;
+	width: 60%;
+	border-radius: 0.25rem;
+	padding: 2rem;
+	margin: 0 auto;
 }
-  
-  .control input {
-    display: block;
-    width: 50%;
-    margin: 0 auto;
-    font: inherit;
-    padding: 0.2rem;
-    border-radius: 12px;
-    border: 1px solid #ccc;
-  }
-  
-  .control input:focus{
-    outline: none;
-    border-color: #230052;
-  }
+
+.control {
+	margin: 1rem 0;
+}
+
+.control lable {
+	display: block;
+	width: 100%;
+	font-weight: bold;
+	left: 100px;
+	text-align: center;
+}
+
+.control input {
+	display: block;
+	width: 50%;
+	margin: 0 auto;
+	font: inherit;
+	padding: 0.2rem;
+	border-radius: 12px;
+	border: 1px solid #ccc;
+}
+
+.control input:focus {
+	outline: none;
+	border-color: #230052;
+}
 
 .submit {
-    display: block;
-    /* width: 50%; */
-    margin: 0 auto;
-    padding: 0.4rem;
-    margin-bottom: 1rem;
-    border: 2px solid #56CCF2;
-    border-radius: 7px;
-    background-color: black;
-    color:  white;
-  }
+	display: block;
+	/* width: 50%; */
+	margin: 0 auto;
+	padding: 0.4rem;
+	margin-bottom: 1rem;
+	border: 2px solid #56ccf2;
+	border-radius: 7px;
+	background-color: black;
+	color: white;
+}
+
+.btn {
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	font-size: 30px;
+	line-height: 20px;
+	font-weight: 600;
+	border-radius: 8px;
+	padding: 14px 24px;
+	border: none;
+	transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s,
+		-webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+	background: linear-gradient(
+		to right,
+		rgb(230, 30, 77) 0%,
+		rgb(227, 28, 95) 50%,
+		rgb(215, 4, 102) 100%
+	);
+	color: #fff;
+}
