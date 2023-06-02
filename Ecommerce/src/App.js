@@ -8,6 +8,8 @@ import ContactUs from "./components/Contact/ContactUs";
 import ProductDetails from "./components/Content/Products/ProductDetails";
 import { useState } from "react";
 import { CartProvider } from "./store/cart-context";
+import Login from "./components/Login/Login";
+import { AuthContextProvide } from "./store/auth-context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 const productsArr = [
 	{
@@ -48,18 +50,27 @@ const App = () => {
 	};
 	return (
 		<CartProvider>
-			<Router>
-				<Header onShowCart={showCartHandler} />
-				{isCartOpen && <Cart onClose={hideCartHandler} />}
-				<Routes>
-					<Route path="/" element={<Content items={productsArr} />} />
-					<Route path="/about" element={<About />} />
-					<Route path="/home" element={<Home />} />
-					<Route path="/contact" element={<ContactUs />} />
-					<Route path="/product-detail/:Id" element={<ProductDetails items={productsArr}/>}/>
-				</Routes>
-				<Footer />
-			</Router>
+			<AuthContextProvide>
+				<Router>
+					<Header onShowCart={showCartHandler} />
+					{isCartOpen && <Cart onClose={hideCartHandler} />}
+					<Routes>
+						<Route
+							path="/"
+							element={<Content items={productsArr} />}
+						/>
+						<Route path="/about" element={<About />} />
+						<Route path="/home" element={<Home />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/contact" element={<ContactUs />} />
+						<Route
+							path="/product-detail/:Id"
+							element={<ProductDetails items={productsArr} />}
+						/>
+					</Routes>
+					<Footer />
+				</Router>
+			</AuthContextProvide>
 		</CartProvider>
 	);
 };
