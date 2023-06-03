@@ -33,15 +33,10 @@
     margin-left: 6em;
 }
 .cart-form input {
-    max-width: 1.75em;
+    max-width: 2em;
     max-height: 2em;
     margin-right: 0.6em;
     margin-left: 0.1em;
-}
-.cart-form input::-webkit-outer-spin-button,
-.cart-form input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
 
 .cart-form button {

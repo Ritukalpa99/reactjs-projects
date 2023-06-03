@@ -1,12 +1,13 @@
 import classes from "./Cart.module.css";
 import CartItem from "./CartItem";
 import CartContext from "../../store/cart-context";
+import AuthContext from "../../store/auth-context";
 import { useContext } from "react";
 
 
 const Cart= (props) => {
 	const cartCtx = useContext(CartContext);
-
+	const authCtx = useContext(AuthContext)
 	const handleRemoveFromcart = (id) => {
 		cartCtx.removeFromCart(id);
 	}
@@ -22,7 +23,7 @@ const Cart= (props) => {
 				<span>PRICE</span>
 				<span>QUANTITY</span>
 			</div>
-
+			{authCtx.isLoggedIn && <p>Welcome back {localStorage.getItem('user')}</p>}
 			{cartCtx.cartItems.length === 0 ? (
 				<p>Cart is empty</p>
 			) : (

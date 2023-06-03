@@ -24,7 +24,7 @@ const Login = () => {
 
 			const data = await response.json();
 			if (response.ok) {
-				authCtx.login(data.idToken);
+				authCtx.login(data.idToken,enteredEmail);
 			} else {
 				let errorMessage = "Auth Failed!";
 				throw new Error(errorMessage);

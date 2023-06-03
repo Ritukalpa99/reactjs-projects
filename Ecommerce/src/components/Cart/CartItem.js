@@ -12,7 +12,7 @@ const CartItem = (props) => {
         </span>
         <span className={classes['cart-price']}>{props.items.price}</span>
         <span className={classes['cart-form']}>
-            <input type="number" min="1"/>
+            <input type="number" min="1"></input>
             <button onClick={() => handleDelete(idx)}>Remove</button>
         </span>
     </div>
