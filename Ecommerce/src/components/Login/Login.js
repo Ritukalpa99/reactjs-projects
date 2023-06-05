@@ -48,11 +48,11 @@ const Login = () => {
 			{!authCtx.isLoggedIn && (
 				<form onSubmit={submitHandler}>
 					<div className={classes.control}>
-						<lable htmlFor="email">E-Mail</lable>
+						<label htmlFor="email">E-Mail</label>
 						<input type="email" id="mail" required ref={emailRef} />
 					</div>
 					<div className={classes.control}>
-						<lable htmlFor="password">Your Password</lable>
+						<label htmlFor="password">Your Password</label>
 						<input
 							type="password"
 							id="password"

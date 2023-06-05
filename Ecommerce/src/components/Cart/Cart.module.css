@@ -12,6 +12,12 @@
     z-index: 2;
 }
 
+.cart .welcome {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 1em;
+}
 .cart h2 {
     margin-top: 10px;
     text-align: center;
@@ -42,4 +48,16 @@
 
 .cart-item {
     margin-right: 45px;
+}
+
+.cart-total {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 1.2rem;
+    margin: 20px;
+}
+
+.cart-total .total-title {
+    margin-right: 10px;
+    font-size: 1.5rem;
 }

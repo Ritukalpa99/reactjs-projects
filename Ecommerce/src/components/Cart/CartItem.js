@@ -1,7 +1,12 @@
 import classes from "./CartItem.module.css";
-
+import {useState } from 'react'
 const CartItem = (props) => {
+    const [amount, setAmount] = useState(1);
     const idx = props.index
+
+    const handleChange = (event) => {
+        setAmount(event.target.value)
+    }
     const handleDelete = (id) => {
         props.handleDeleteCart(id);
     }
@@ -12,7 +17,7 @@ const CartItem = (props) => {
         </span>
         <span className={classes['cart-price']}>{props.items.price}</span>
         <span className={classes['cart-form']}>
-            <input type="number" min="1"></input>
+            <input type="number" min="1" onChange={handleChange} value={amount}/>
             <button onClick={() => handleDelete(idx)}>Remove</button>
         </span>
     </div>

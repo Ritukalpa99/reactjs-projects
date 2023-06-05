@@ -21,8 +21,8 @@ const ContentItem = (props) => {
 	const updateServer = async (obj) => {
 		const id = localStorage.getItem("user").replace('.com','').replace('@','at');
 		try {
-			const data = await axios.post(
-				`https://crudcrud.com/api/e65558cf8a2f48e292d40a2190a3487e/cart${id}`,
+			await axios.post(
+				`https://crudcrud.com/api/f997604892ef4cd18befc00c808423ef/cart${id}`,
 				obj
 			);
 		} catch (err) {

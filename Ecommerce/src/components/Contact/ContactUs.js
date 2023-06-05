@@ -6,15 +6,15 @@ const ContactUs = () => {
     const numberRef = useRef("")
     return <form>
         <div className={classes.control}>
-            <lable htmlFor='name'>Name</lable>
+            <label htmlFor='name'>Name</label>
             <input type="text" id="name" ref={nameRef}/>
         </div>
         <div className={classes.control}>
-            <lable htmlFor='mail'>E-Mail</lable>
+            <label htmlFor='mail'>E-Mail</label>
             <input type="text" id="mail" ref={mailRef}/>
         </div>
         <div className={classes.control}>
-            <lable htmlFor='number'>Phone Number</lable>
+            <label htmlFor='number'>Phone Number</label>
             <input type="text" id="number" ref={numberRef}/>
         </div>
         <button className={classes.submit}>Submit </button>
