@@ -1,6 +1,6 @@
 
 .form {
-    height: 70vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,4 +15,11 @@
     border-radius: 0.25em;
     border: 1px solid sandybrown;
 }
+.sigup * {
+    margin-left: 20px;
+    margin-right: 40px;
+}
 
+.submit-btn {
+    background-color: black;
+}
