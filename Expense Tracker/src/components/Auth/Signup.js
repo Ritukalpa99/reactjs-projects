@@ -5,7 +5,7 @@ const Singup = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
-	const [isLogin, setIsLogin] = useState(true);
+	const [isLogin, setIsLogin] = useState(false);
 
     const authCtx = useContext(AuthContext);
 
@@ -42,14 +42,13 @@ const Singup = () => {
 			});
 			// console.log(res);
 			const data = await res.json();
+            // console.log(data.idToken);
             authCtx.login(data.idToken);
 			// console.log(data);
 			if (!res.ok) {
 				const errorMessage = data.error.message;
 				throw new Error(errorMessage);
-			} else {
-                alert("Login successful")
-            }
+			} 
 		} catch (err) {
 			alert(err.message);
 		}
