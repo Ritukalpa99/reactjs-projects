@@ -1,8 +1,7 @@
 import classes from "./UserProfile.module.css";
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const UserProfile = () => {
-	const navigate = useNavigate();
 	const nameInputRef = useRef();
 	const urlInputRef = useRef();
 
@@ -12,9 +11,7 @@ const UserProfile = () => {
 		const enteredName = nameInputRef.current.value;
 		const enteredUrl = urlInputRef.current.value;
 
-		// alert(`${enteredName}${enteredUrl}`);
 		updateUserDetails(enteredName, enteredUrl);
-		// navigate('/');
 		nameInputRef.current.value = "";
 		urlInputRef.current.value = "";
 	};
@@ -72,13 +69,14 @@ const UserProfile = () => {
 
             nameInputRef.current.value = fetchedUserName;
 		    urlInputRef.current.value = fetchedUrl;
-            
+
 		} catch (err) {
 			alert(err.message);
 		}
 	};
 
 	return (
+        <>
 		<form className={classes.form} onSubmit={handleSubmit}>
 			<div className={classes["form-input"]}>
 				<label> Full Name</label>
@@ -91,6 +89,8 @@ const UserProfile = () => {
 				<input type="button" onClick={handleUserEdit} value="Edit" />
 			</div>
 		</form>
+        <Link to="/">Back to Home</Link>
+        </>
 	);
 };
 
