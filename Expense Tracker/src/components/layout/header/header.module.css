@@ -1,0 +1,13 @@
+.navbar {
+    background-color: black;
+    display: flex;
+}
+.navbar * {
+    color: azure;
+    padding: 0.3em;
+}
+.profile-msg {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
