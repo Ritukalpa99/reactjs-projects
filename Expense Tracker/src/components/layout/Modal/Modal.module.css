@@ -1,0 +1,21 @@
+.modal {
+	position: fixed;
+	left: 25%;
+    top:30%;
+	margin: 0 auto;
+	min-height: 50vh;
+	width: 60vw;
+    z-index: 2;
+	border: 2px solid black;
+	background-color: cornsilk;
+}
+
+.backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 120vh;
+	z-index: 1;
+	background: rgba(0, 0, 0, 0.75);
+}

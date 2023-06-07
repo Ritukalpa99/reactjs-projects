@@ -1,13 +1,14 @@
 import classes from "./Signup.module.css";
-import { useState,useContext } from "react";
+import { useState, useContext } from "react";
 import AuthContext from "../../store/auth-context";
+import ForgotPassword from "./ForgotPassword";
 const Singup = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [isLogin, setIsLogin] = useState(false);
-
-    const authCtx = useContext(AuthContext);
+	const [openModal ,setOpenModal] = useState(true);
+	const authCtx = useContext(AuthContext);
 
 	const submitHandler = (event) => {
 		event.preventDefault();
@@ -23,11 +24,11 @@ const Singup = () => {
 
 	const signUser = async (email, password) => {
 		let url;
-        if(isLogin) {
-            url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyClyJBMlHDOKPK5KXQ9pnCn8lZ212AxtSg`;
-        } else {
-            url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyClyJBMlHDOKPK5KXQ9pnCn8lZ212AxtSg`;
-        }
+		if (isLogin) {
+			url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyClyJBMlHDOKPK5KXQ9pnCn8lZ212AxtSg`;
+		} else {
+			url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyClyJBMlHDOKPK5KXQ9pnCn8lZ212AxtSg`;
+		}
 		try {
 			const res = await fetch(url, {
 				method: "POST",
@@ -42,18 +43,21 @@ const Singup = () => {
 			});
 			// console.log(res);
 			const data = await res.json();
-            // console.log(data.idToken);
-            authCtx.login(data.idToken);
+			// console.log(data.idToken);
+			authCtx.login(data.idToken);
 			// console.log(data);
 			if (!res.ok) {
 				const errorMessage = data.error.message;
 				throw new Error(errorMessage);
-			} 
+			}
 		} catch (err) {
 			alert(err.message);
 		}
 	};
 	return (
+		<>
+		{openModal &&
+		<ForgotPassword onModalClose={() => setOpenModal(false)}/>}
 		<section className={classes.form}>
 			<form onSubmit={submitHandler}>
 				<div className={classes.sigup}>
@@ -109,15 +113,36 @@ const Singup = () => {
 							/>
 						</div>
 					)}
-                    <div className="d-grid col-12">   
-					<button type="submit" className="btn btn-primary">
-						Submit
+					{isLogin && (
+						<button
+							type="button"
+							style={{ marginBottom: "0.5em" }}
+							className="btn btn-link"
+							onClick={() => setOpenModal(true)}
+						>
+							Forgot Password
+						</button>
+					)}
+					<div className="d-grid col-12">
+						<button
+							type="submit"
+							style={{ marginBottom: "0.5em" }}
+							className="btn btn-primary"
+						>
+							Submit
+						</button>
+					</div>
+					<button
+						type="button"
+						class="btn btn-link"
+						onClick={() => setIsLogin((prev) => !prev)}
+					>
+						{isLogin ? "SignIn" : "SignUp"}
 					</button>
-                    </div>
-                    <button type="button" class="btn btn-link" onClick={() => setIsLogin((prev) => !prev)}>{isLogin ? 'SignIn' : 'SignUp'}</button>
 				</div>
 			</form>
 		</section>
+		</>
 	);
 };
 
