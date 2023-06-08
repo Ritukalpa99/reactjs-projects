@@ -19,7 +19,7 @@ const ExpenseInputForm = (props) => {
             cat : enteredCategory
         }
 
-        props.onHandleSubmit(expenseObj);
+        props.onAddExpense(expenseObj);
     }
 
     return <form onSubmit={handleExpenseForm}>
