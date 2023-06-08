@@ -1,9 +1,12 @@
 import ExpenseInputForm from "./ExpenseInputForm";
 import DisplayExpense from "./DisplayExpense";
 import { useEffect, useState } from "react";
+import EditForm from "./EditForm";
 
 const Expense = () => {
 	const [items, setItems] = useState([]);
+    const [showForm, setShowForm] = useState(false);
+    const [editModal, setEditModal] = useState(false);
 
 	useEffect(() => {
         fetchExpenses()
@@ -35,30 +38,53 @@ const Expense = () => {
 			alert(err.message);
 		}
 	};
+
+    const editExpenseHandler = () => {
+        // alert('edit clicked')
+        setEditModal(true)
+    }
+
+    const deleteExpenseHandler = async (id) => {
+        // alert(id)
+        try {
+            await fetch(`https://expense-tracker-91438-default-rtdb.firebaseio.com/expense/${id}.json`,{
+                method : "DELETE"
+            })
+
+            setItems((prev) => prev.filter((item) => item.id !== id));
+
+        }catch(err) {
+            console.log(err)
+        }
+    }
 	const addExpenseHandler = async (obj) => {
-		setItems((prev) => [...prev, obj]);
-		try {
-			const res = await fetch(
-				`https://expense-tracker-91438-default-rtdb.firebaseio.com/expense.json`,
+        try {
+            const res = await fetch(
+                `https://expense-tracker-91438-default-rtdb.firebaseio.com/expense.json`,
 				{
-					method: "POST",
+                    method: "POST",
 					body: JSON.stringify(obj),
 					headers: {
-						"Content-Type": "application/json",
+                        "Content-Type": "application/json",
 					},
 				}
-			);
-
-			const data = await res.json();
-			// console.log(data);
+                );
+                
+                const data = await res.json();
+                setItems((prev) => [...prev, obj,{id :  data.name}]);
+			console.log(data);
+            alert(data.name)
 		} catch (err) {
 			console.log(err);
 		}
 	};
 	return (
-		<>
-			<ExpenseInputForm onAddExpense={addExpenseHandler} />
-			<DisplayExpense expenses={items} />
+		<>  
+            <button onClick={() => setShowForm((prev) => !prev)}>{!showForm ? "Add Expense" : "Hide Add Expense Form"}</button>
+            {showForm && 
+			<ExpenseInputForm onAddExpense={addExpenseHandler} />}
+            {editModal && <EditForm onModalClose={() => setEditModal(false)}/>}
+			<DisplayExpense expenses={items} onEditExpense={editExpenseHandler} onDeleteExpense={deleteExpenseHandler}/>
 		</>
 	);
 };
