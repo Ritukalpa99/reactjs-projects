@@ -9,7 +9,7 @@ const ForgotPassword = (props) => {
 	};
 
 	const handleResetPassword = async () => {
-		alert(`Mail found ${emailRef.current.value}`);
+		// alert(`Mail found ${emailRef.current.value}`);
 
 		const url = `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyClyJBMlHDOKPK5KXQ9pnCn8lZ212AxtSg`;
 		try {

@@ -7,7 +7,7 @@ const Singup = () => {
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [isLogin, setIsLogin] = useState(false);
-	const [openModal ,setOpenModal] = useState(true);
+	const [openModal ,setOpenModal] = useState(false);
 	const authCtx = useContext(AuthContext);
 
 	const submitHandler = (event) => {
