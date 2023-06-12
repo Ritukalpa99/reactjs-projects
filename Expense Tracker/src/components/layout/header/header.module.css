@@ -2,6 +2,9 @@
     background-color: black;
     display: flex;
 }
+.navbar * {
+    margin: 1.5rem;
+}
 .log:hover {
     cursor: pointer;
 }

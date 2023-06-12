@@ -1,17 +1,17 @@
 import Auth from "../Auth/Auth";
-import AuthContext from "../../store/auth-context";
-import { useContext } from "react";
+import { useSelector } from "react-redux";
 import Expense from "../Expense/Expense";
 // import VerifyEmail from "../Auth/VeryEmail";
 const Layout = () => {
-	const authCtx = useContext(AuthContext);
+	// const authCtx = useContext(AuthContext);
+	const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
 	return (
 		<>
-			{!authCtx.isLoggedIn && <Auth />}
-			{authCtx.isLoggedIn && <p>Welcome to expense Tracker</p>}
+			{!isLoggedIn && <Auth />}
+			{isLoggedIn && <p>Welcome to expense Tracker</p>}
 			{/* {authCtx.isLoggedIn && <VerifyEmail />} */}
-			{authCtx.isLoggedIn && <Expense/>}
+			{isLoggedIn && <Expense/>}
 		</>
 	);
 };

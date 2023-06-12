@@ -1,0 +1,28 @@
+.cross {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.cross:hover,
+.cross:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+}
+.form * {
+    margin: 0.5rem;
+}
+.form button {
+    margin-top: 2rem;
+}
