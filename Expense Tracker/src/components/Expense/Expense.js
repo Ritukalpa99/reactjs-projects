@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import EditForm from "./EditForm";
 import { useDispatch, useSelector } from "react-redux";
 import { expenseActions } from "../../store/expenseSlice";
+import Premium from "./Premium/Premium";
 
 const Expense = () => {
 	const expItem = useSelector((state) => state.exp.expenseItems);
 	const totalAmount = useSelector((state) => state.exp.amount);
 	const dispatch = useDispatch();
 	
-	const [items, setItems] = useState([]);
+	// const [items, setItems] = useState([]);
 	const [showForm, setShowForm] = useState(false);
 	const [editModal, setEditModal] = useState(false);
 	const [editData, setEditData] = useState();
@@ -43,12 +44,11 @@ const Expense = () => {
 				throw new Error("Something went Wrong");
 			}
 		} catch (err) {
-			// alert(err.message);
+			alert(err.message);
 		}
 	};
 
 	const editExpenseHandler = (obj) => {
-		// alert('edit clicked')
 		setEditModal(true);
 		setEditData(obj);
 	};
@@ -66,7 +66,6 @@ const Expense = () => {
 		dispatch(expenseActions.updateExpense(obj));
 	};
 	const deleteExpenseHandler = async (id) => {
-		// alert(id)
 		try {
 			await fetch(
 				`https://expense-tracker-91438-default-rtdb.firebaseio.com/expense/${id}.json`,
@@ -98,8 +97,7 @@ const Expense = () => {
 			const expId = data.name;
 			// setItems((prev) => [...prev, { ...obj, id: data.name }]);
 			dispatch(expenseActions.addExpense({ obj, expId }));
-			// console.log(data);
-			// alert(data.name)
+			
 		} catch (err) {
 			console.log(err);
 		}
@@ -122,6 +120,7 @@ const Expense = () => {
 				onEditExpense={editExpenseHandler}
 				onDeleteExpense={deleteExpenseHandler}
 			/>
+			{totalAmount>100 && <Premium />}
 		</>
 	);
 };
