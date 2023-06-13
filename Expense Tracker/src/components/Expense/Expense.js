@@ -15,9 +15,11 @@ const Expense = () => {
 	const [showForm, setShowForm] = useState(false);
 	const [editModal, setEditModal] = useState(false);
 	const [editData, setEditData] = useState();
+	
 	useEffect(() => {
 		fetchExpenses();
 		// console.log(expItem)
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const fetchExpenses = async () => {
@@ -47,6 +49,8 @@ const Expense = () => {
 			alert(err.message);
 		}
 	};
+
+	
 
 	const editExpenseHandler = (obj) => {
 		setEditModal(true);
