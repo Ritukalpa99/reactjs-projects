@@ -1,14 +1,14 @@
-import Singup from "./components/Auth/Signup";
-import { useSelector } from "react-redux";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout/Layout";
 
 
 function App() {
-    const isLogin = useSelector((state) => state.auth.isLoggedIn)
-    return <>
-        <h1>Running</h1>
-        {isLogin && <h1>User's is logged In</h1>}
-        <Singup />
-    </>
+   
+    return <Router>
+        <Routes>
+            <Route path="/" element={<Layout/>}/>
+        </Routes>
+    </Router>
 }
 
 export default App;
