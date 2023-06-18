@@ -8,7 +8,7 @@ const Premium = () => {
         dispatch(themeActions.toggleTheme())
     }
 
-	return <button onClick={handleToggle}>Active Premium</button>;
+	return <button style={{color : "white", backgroundColor : "#76b5c5"}} onClick={handleToggle}>Active Premium</button>;
 };
 
 export default Premium;

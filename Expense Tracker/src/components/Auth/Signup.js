@@ -43,7 +43,9 @@ const Singup = () => {
 			});
 			const data = await res.json();
 			// authCtx.login(data.idToken);
-			dispatch(authActions.login(data.idToken));
+			const token = data.idToken;
+			const id = email
+			dispatch(authActions.login({token,id}));
 			if (!res.ok) {
 				const errorMessage = data.error.message;
 				throw new Error(errorMessage);
@@ -61,7 +63,7 @@ const Singup = () => {
 				<form onSubmit={submitHandler}>
 					<div className={classes.sigup}>
 						<h1 className={classes.title}>
-							{isLogin ? "SingIn" : "SignUp"}
+							{isLogin ? "Sing In" : "Sign Up"}
 						</h1>
 						<div className="mb-3">
 							<label htmlFor="email" className="form-label">
@@ -136,7 +138,7 @@ const Singup = () => {
 							class="btn btn-link"
 							onClick={() => setIsLogin((prev) => !prev)}
 						>
-							{isLogin ? "SignIn" : "SignUp"}
+							{isLogin ? "Sign In" : "Sign Up"}
 						</button>
 					</div>
 				</form>

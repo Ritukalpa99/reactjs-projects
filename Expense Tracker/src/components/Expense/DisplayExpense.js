@@ -1,3 +1,5 @@
+import classes from "./DisplayExpense.module.css"
+
 const DisplayExpense = (props) => {
 	const handleDelete = (id) => {
 		props.onDeleteExpense(id);
@@ -8,12 +10,12 @@ const DisplayExpense = (props) => {
 	};
 
 	return (
-		<ul>
+		<ul className={classes.list}>
 			{props.expenses.map((expense) => {
 				return (
 					<li key={expense.id}>
 						{expense.amount} - {expense.desc} - {expense.cat}
-						<button
+						<button className={classes.edit}
 							onClick={() =>
 								handleEdit({
 									id: expense.id,
@@ -25,7 +27,7 @@ const DisplayExpense = (props) => {
 						>
 							Edit
 						</button>
-						<button onClick={() => handleDelete(expense.id)}>
+						<button className={classes.delete} onClick={() => handleDelete(expense.id)}>
 							Delete
 						</button>
 					</li>

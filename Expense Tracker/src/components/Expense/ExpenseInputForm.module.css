@@ -1,0 +1,8 @@
+.form *{
+    margin: 0.5rem;
+}
+
+.form button {
+    color: white;
+    background-color: blueviolet;
+}

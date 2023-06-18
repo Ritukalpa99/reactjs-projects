@@ -1,9 +1,10 @@
 .main {
     text-align: center;
+    height: 110vh;
 }
 
 .dark {
-    background-color: black;
+    background-color: #9336B4;
     color: white;
 }
 button {
@@ -12,5 +13,5 @@ button {
     border-radius: 10px;
 }
 .dark button {
-    color: red;
+    color: white;
 }

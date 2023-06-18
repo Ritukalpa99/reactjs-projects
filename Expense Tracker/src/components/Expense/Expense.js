@@ -5,6 +5,7 @@ import EditForm from "./EditForm";
 import { useDispatch, useSelector } from "react-redux";
 import { expenseActions } from "../../store/expenseSlice";
 import Premium from "./Premium/Premium";
+import classes from "./Expense.module.css";
 
 const Expense = () => {
 	const expItem = useSelector((state) => state.exp.expenseItems);
@@ -23,9 +24,10 @@ const Expense = () => {
 	}, []);
 
 	const fetchExpenses = async () => {
+		const emailId = localStorage.getItem("user").replace('.com','').replace('@','at');
 		try {
 			const res = await fetch(
-				`https://expense-tracker-91438-default-rtdb.firebaseio.com/expense.json`
+				`https://expense-tracker-91438-default-rtdb.firebaseio.com/${emailId}.json`
 			);
 
 			if (res.ok) {
@@ -70,9 +72,10 @@ const Expense = () => {
 		dispatch(expenseActions.updateExpense(obj));
 	};
 	const deleteExpenseHandler = async (id) => {
+		const emailId = localStorage.getItem("user").replace('.com','').replace('@','at');
 		try {
 			await fetch(
-				`https://expense-tracker-91438-default-rtdb.firebaseio.com/expense/${id}.json`,
+				`https://expense-tracker-91438-default-rtdb.firebaseio.com/${emailId}/${id}.json`,
 				{
 					method: "DELETE",
 				}
@@ -85,9 +88,10 @@ const Expense = () => {
 		}
 	};
 	const addExpenseHandler = async (obj) => {
+		const emailId = localStorage.getItem("user").replace('.com','').replace('@','at');
 		try {
 			const res = await fetch(
-				`https://expense-tracker-91438-default-rtdb.firebaseio.com/expense.json`,
+				`https://expense-tracker-91438-default-rtdb.firebaseio.com/${emailId}.json`,
 				{
 					method: "POST",
 					body: JSON.stringify(obj),
@@ -108,7 +112,7 @@ const Expense = () => {
 	};
 	return (
 		<>
-			<button onClick={() => setShowForm((prev) => !prev)}>
+			<button className={classes.btn} onClick={() => setShowForm((prev) => !prev)}>
 				{!showForm ? "Add Expense" : "Hide Add Expense Form"}
 			</button>
 			{showForm && <ExpenseInputForm onAddExpense={addExpenseHandler} />}
@@ -124,7 +128,7 @@ const Expense = () => {
 				onEditExpense={editExpenseHandler}
 				onDeleteExpense={deleteExpenseHandler}
 			/>
-			{totalAmount>100 && <Premium />}
+			{totalAmount>20000 && <Premium />}
 		</>
 	);
 };

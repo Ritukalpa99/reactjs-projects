@@ -9,7 +9,7 @@ const Layout = () => {
 	return (
 		<>
 			{!isLoggedIn && <Auth />}
-			{isLoggedIn && <p>Welcome to expense Tracker</p>}
+			{isLoggedIn && <p style={{fontSize : '30px', marginTop: '1.5rem'}}>Welcome to expense Tracker</p>}
 			{/* {authCtx.isLoggedIn && <VerifyEmail />} */}
 			{isLoggedIn && <Expense/>}
 		</>

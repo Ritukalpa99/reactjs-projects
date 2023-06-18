@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import {useRef } from "react";
 import Modal from "../layout/Modal/Modal";
 import classes from "./EditForm.module.css";
 const EditForm = (props) => {
@@ -27,16 +27,24 @@ const EditForm = (props) => {
 			desc: enteredDescription,
 			cat: enteredCategory,
 		};
-        updateExpense(expenseObj);
+		updateExpense(expenseObj);
 
-        props.updateState({...expenseObj, id: props.expenses.id})
+		props.updateState({ ...expenseObj, id: props.expenses.id });
+
+		amountRef.current.value = "";
+		descRef.current.value = "Done";
+		catRef.current.value = "";
 	};
 
 	const updateExpense = async (obj) => {
 		const id = props.expenses.id;
+		const emailId = localStorage
+			.getItem("user")
+			.replace(".com", "")
+			.replace("@", "at");
 		try {
 			const res = await fetch(
-				`https://expense-tracker-91438-default-rtdb.firebaseio.com/expense/${id}.json`,
+				`https://expense-tracker-91438-default-rtdb.firebaseio.com/${emailId}/${id}.json`,
 				{
 					method: "PUT",
 					body: JSON.stringify(obj),
@@ -48,9 +56,9 @@ const EditForm = (props) => {
 			if (!res.ok) {
 				throw new Error("Error updating data");
 			}
-            if(res.ok) {
-                alert("Successfully Updated!")
-            }
+			if (res.ok) {
+				alert("Successfully Updated!");
+			}
 			const data = await res.json();
 			console.log(data);
 		} catch (err) {
