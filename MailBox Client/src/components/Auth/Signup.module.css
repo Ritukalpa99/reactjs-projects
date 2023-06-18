@@ -1,0 +1,25 @@
+
+.form {
+    height: 50em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.title {
+    text-align: center;
+    padding-bottom: 0.6em;
+}
+.sigup {
+    padding: 1.5em;
+    border-radius: 0.25em;
+    border: 1px solid sandybrown;
+}
+.sigup * {
+    margin-left: 20px;
+    margin-right: 40px;
+}
+
+.submit-btn {
+    background-color: black;
+}
