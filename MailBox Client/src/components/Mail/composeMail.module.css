@@ -1,0 +1,11 @@
+.form {
+    margin: 0 auto;
+    width: 70%;
+}
+
+.form-outline {
+    border: 2px solid black;
+    border-radius: 20px;
+    margin: 1.2rem;
+    padding: 1rem;
+}

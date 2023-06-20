@@ -1,10 +1,10 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Singup from "../Auth/Signup";
-import { useDispatch } from "react-redux";
+import ComposeMail from "../Mail/composeMail";
 import { authActions } from "../../store/authSlice";
 const Layout = () => {
 	const isLogin = useSelector((state) => state.auth.isLoggedIn);
-	const dispatch = useDispatch();
+	const dispatch = useDispatch(); 
 	return (
 		<>
 			{isLogin && (
@@ -14,6 +14,7 @@ const Layout = () => {
 			)}
 			{!isLogin && <Singup />}
 			{isLogin && <h1>Welcome to MailBox Client</h1>}
+			{isLogin && <ComposeMail />}
 		</>
 	);
 };
