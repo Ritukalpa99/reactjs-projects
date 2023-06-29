@@ -22,10 +22,44 @@ const ComposeMail = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-        const content = draftToMarkdown(convertToRaw(editorState.getCurrentContent()))
-		alert(`${content}, ${to}, ${subject}`);
+		const content = draftToMarkdown(
+			convertToRaw(editorState.getCurrentContent())
+		);
+		const id = Math.random().toString().slice(2);
+		let box = "sentbox";
+		putData({ to,id, subject, content, box});
+		box = "inbox";
+		putData({ to,id, subject, content, box });
+		setTo("");
+		setSubject("");
 	};
-
+	const putData = async ({ to, id,subject, content, box }) => {
+		const sender = localStorage.getItem("user");
+		const recipient = to;
+		const body = {
+			sender: sender,
+			recipient: recipient,
+			subject: subject,
+			content: content,
+			id: id,
+		};
+		try {
+			const res = await fetch(
+				`https://mailbox-client-b17b9-default-rtdb.firebaseio.com/${box}.json`,
+				{
+					method: "POST",
+					body: JSON.stringify(body),
+					headers: {
+						"Content-Type": "application/json",
+					},
+				}
+			);
+			const data = await res.json();
+			console.log(data);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 	return (
 		<div className={classes.form}>
 			<h1>Compose your mail</h1>

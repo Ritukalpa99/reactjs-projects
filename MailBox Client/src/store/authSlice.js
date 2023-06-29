@@ -4,6 +4,7 @@ const initialToken = localStorage.getItem("token");
 const authInitialState = {
 	token: initialToken,
 	isLoggedIn: !!initialToken,
+	id : "",
 };
 
 const authSlice = createSlice({
@@ -11,13 +12,18 @@ const authSlice = createSlice({
 	initialState: authInitialState,
 	reducers: {
 		login(state, action) {
-			state.token = action.payload;
+			const {token,id} = action.payload;
+			state.token = token;
+			state.id = id;
 			localStorage.setItem("token", state.token);
+			localStorage.setItem("user", state.id);
 			state.isLoggedIn = true;
 		},
 		logout(state) {
 			state.token = null;
+			state.id = "";
 			localStorage.removeItem("token");
+			localStorage.removeItem("user");
 			state.isLoggedIn = false;
 		},
 	},

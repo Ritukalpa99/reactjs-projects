@@ -44,8 +44,8 @@ const Singup = () => {
 			// authCtx.login(data.idToken);
 			const token = data.idToken;
 			const id = email
-			// dispatch(authActions.login({token,id}));
-			dispatch(authActions.login(token));
+			dispatch(authActions.login({token,id}));
+			// dispatch(authActions.login(token));
 			if (!res.ok) {
 				const errorMessage = data.error.message;
 				throw new Error(errorMessage);
