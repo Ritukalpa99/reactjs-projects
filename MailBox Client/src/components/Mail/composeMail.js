@@ -1,65 +1,57 @@
-import { useState } from "react";
+import { useRef } from "react";
 import { Editor } from "react-draft-wysiwyg";
-import { convertToRaw } from "draft-js";
-import draftToMarkdown from "draftjs-to-markdown";
 import classes from "./composeMail.module.css";
-import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import axios from "axios";
 const ComposeMail = () => {
-	const [editorState, setEditorState] = useState("");
-	const [to, setTo] = useState("");
-	const [subject, setSubject] = useState("");
+	const email = useRef();
+	const emailSubject = useRef();
+	let emailMsg;
 
-	const handleToOnChange = (e) => {
-		setTo(e.target.value);
-	};
-
-	const handleSubjectOnChange = (e) => {
-		setSubject(e.target.value);
-	};
-	const onEditorStateChange = (editorState) => {
-		setEditorState(editorState);
+	const onEditorStateChange = (event) => {
+		emailMsg = event.getCurrentContent().getPlainText();
 	};
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		const content = draftToMarkdown(
-			convertToRaw(editorState.getCurrentContent())
-		);
-		const id = Math.random().toString().slice(2);
-		let box = "sentbox";
-		putData({ to,id, subject, content, box});
-		box = "inbox";
-		putData({ to,id, subject, content, box });
-		setTo("");
-		setSubject("");
-	};
-	const putData = async ({ to, id,subject, content, box }) => {
-		const sender = localStorage.getItem("user");
-		const recipient = to;
-		const body = {
-			sender: sender,
-			recipient: recipient,
-			subject: subject,
-			content: content,
-			id: id,
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+
+		let receiverEmail = email.current.value;
+		let senderEmail = localStorage.getItem("user");
+
+		if (senderEmail !== null) {
+			senderEmail = senderEmail.replace("@", "").replace(".", "");
+		}
+		if (receiverEmail !== null) {
+			receiverEmail = receiverEmail.replace("@", "").replace(".", "");
+		}
+
+		const MailData = {
+			to: email.current.value,
+			subject: emailSubject.current.value,
+			msg: emailMsg,
+			read: false,
+			from: localStorage.getItem("user"),
 		};
+
 		try {
-			const res = await fetch(
-				`https://mailbox-client-b17b9-default-rtdb.firebaseio.com/${box}.json`,
-				{
-					method: "POST",
-					body: JSON.stringify(body),
-					headers: {
-						"Content-Type": "application/json",
-					},
-				}
+			await axios.post(
+				`https://mailbox-client-b17b9-default-rtdb.firebaseio.com/${receiverEmail}/inbox.json`,
+				MailData
 			);
-			const data = await res.json();
-			console.log(data);
-		} catch (err) {
-			console.log(err);
+
+			await axios.post(
+				`https://mailbox-client-b17b9-default-rtdb.firebaseio.com/${senderEmail}/sent.json`,
+				MailData
+			);
+
+			console.log("Mail Sent");
+			email.current.value = "";
+			emailSubject.current.value = "";
+		} catch (error) {
+			alert(error);
 		}
 	};
+
 	return (
 		<div className={classes.form}>
 			<h1>Compose your mail</h1>
@@ -71,7 +63,7 @@ const ComposeMail = () => {
 					id="to"
 					type="email"
 					className="form-control"
-					onChange={handleToOnChange}
+					ref={email}
 					required
 				/>
 				<label htmlFor="subject" className="form-label">
@@ -81,13 +73,15 @@ const ComposeMail = () => {
 					type="text"
 					id="subject"
 					className="form-control"
-					onChange={handleSubjectOnChange}
+					ref={emailSubject}
 					required
 				/>
 				<div className={classes["form-outline"]}>
 					<Editor
-						wrapperClassName="demo-wrapper"
-						editorClassName="demo-editor"
+						placeholder="Type your message here"
+						toolbarClassName="toolbarClassName"
+						wrapperClassName="wrapperClassName"
+						editorClassName="editorClassName"
 						onEditorStateChange={onEditorStateChange}
 					/>
 				</div>
