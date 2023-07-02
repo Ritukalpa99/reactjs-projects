@@ -6,7 +6,6 @@ import {
 	MDBContainer,
 	MDBCard,
 	MDBCardBody,
-	MDBBtn,
 } from "mdb-react-ui-kit";
 import axios from "axios";
 export default function Sent() {
@@ -90,9 +89,8 @@ export default function Sent() {
 
 											<td>
 												{
-													<MDBBtn
-														className="me-1"
-														color="danger"
+													<button
+														className="btn btn-danger"
 														onClick={() => {
 															deleteMailHabdler(
 																i.id
@@ -100,7 +98,7 @@ export default function Sent() {
 														}}
 													>
 														Delete
-													</MDBBtn>
+													</button>
 												}
 											</td>
 										</tr>

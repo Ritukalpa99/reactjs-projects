@@ -4,8 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../store/authSlice";
 const Navbar = () => {
 	const isLogin = useSelector((state) => state.auth.isLoggedIn);
+	const unrealMail = useSelector((state) => state.Mail.Mail);
 	const dispatch = useDispatch();
 
+	let unreatCount = 0;
+	unrealMail.map((mail) => (mail.read ? unreatCount : unreatCount++));
+	// document.title = `Inbox ${unreatCount}`;
 	return (
 		<nav>
 			<div className={classes["main-head"]}>
@@ -14,18 +18,28 @@ const Navbar = () => {
 						<h1>MailBox Client</h1>
 					</NavLink>
 					<li>
-						<NavLink to="/inbox">INBOX</NavLink>
+						<NavLink className={classes.outline} to="/">
+							INBOX 
+						<sup className={classes.unread}>{unreatCount}</sup>
+						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/sent">SENT</NavLink>
+						<NavLink className={classes.outline} to="/sent">
+							SENT
+						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/compose">COMPOSE</NavLink>
+						<NavLink className={classes.outline} to="/compose">
+							COMPOSE
+						</NavLink>
 					</li>
 				</div>
 				<div className={classes.signup}>
 					{isLogin && (
-						<button onClick={() => dispatch(authActions.logout())}>
+						<button
+							className="btn btn-outline-dark"
+							onClick={() => dispatch(authActions.logout())}
+						>
 							Logout
 						</button>
 					)}

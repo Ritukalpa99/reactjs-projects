@@ -44,7 +44,7 @@ const ComposeMail = () => {
 				MailData
 			);
 
-			console.log("Mail Sent");
+			alert("Mail Sent Successfully");
 			email.current.value = "";
 			emailSubject.current.value = "";
 		} catch (error) {
@@ -85,7 +85,7 @@ const ComposeMail = () => {
 						onEditorStateChange={onEditorStateChange}
 					/>
 				</div>
-				<button type="submit">Compose</button>
+				<button className="btn btn-success" type="submit">Compose</button>
 			</form>
 		</div>
 	);

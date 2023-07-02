@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import classes from "./composeMail.module.css"
 import {
   MDBTable,
   MDBTableHead,
@@ -6,8 +7,6 @@ import {
   MDBContainer,
   MDBCard,
   MDBCardBody,
-  MDBBtn,
-  MDBIcon,
 } from "mdb-react-ui-kit";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -69,14 +68,14 @@ export default function Inbox() {
     }
     dispatch(MailActions.onSendMail(trasformData));
   };
-  const httpdata = usehttp(
+  const callData = usehttp(
     `https://mailbox-client-b17b9-default-rtdb.firebaseio.com/${SenderEmail}/inbox.json`,
     datatransformfunction
   );
 
 
   useEffect(() => {
-    httpdata();
+    callData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, trigger]);
 
@@ -97,38 +96,36 @@ export default function Inbox() {
                 <th scope="col"></th>
               </tr>
             </MDBTableHead>
-
             {outbox.map((i, index) => {
               const newmsg = i.msg;
-
               return (
                 <MDBTableBody>
                   <tr>
                     <th scope="row">{index + 1}</th>
-                    <td>{i.read ? "" : <MDBIcon fas icon="dot-circle" />}</td>
+                    <td>{i.read ? "" : <span className={classes.dot}></span>}</td>
                     <td>{i.from}</td>
                     <td>{i.subject}</td>
                     <td>{newmsg.slice(0, 45) + "..."}</td>
                     <td>
                       {" "}
-                      <MDBBtn
-                        color="info"
+                      <button
+                      className="btn btn-info"
                         onClick={() => {
                           viewMailHandler(i.id);
                         }}
                       >
                         View
-                      </MDBBtn>
+                      </button>
                     </td>
                     <td>
                       {
-                        <MDBBtn
-                          className="me-1"
+                        <button
+                          className="btn btn-danger"
                           color="danger"
                           onClick={() => deleteMailHabdler(i.id)}
                         >
                           Delete
-                        </MDBBtn>
+                        </button>
                       }
                     </td>
                   </tr>
