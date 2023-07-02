@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import Singup from "../Auth/Signup";
 import ComposeMail from "../Mail/composeMail";
 import { Routes, Route } from "react-router-dom";
+import Inbox from "../Mail/inbox";
 const Layout = () => {
 	const isLogin = useSelector((state) => state.auth.isLoggedIn);
 	
@@ -12,6 +13,7 @@ const Layout = () => {
 			{isLogin && <h1>Welcome to MailBox Client</h1>}
 			<Routes>
 				<Route path="/compose" element={<ComposeMail />} />
+				<Route path="/inbox" element={<Inbox/>}/>
 			</Routes>
 		</>
 	);
