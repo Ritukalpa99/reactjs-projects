@@ -10,12 +10,12 @@ import {
 import axios from "axios";
 export default function Sent() {
 	const [trigger, settrigger] = useState(false);
-	const usehttp = (url, myfun) => {
+	const usehttp = (url, addMails) => {
 		const fetch = async () => {
 			const data = await axios.get(url);
 			const respose = await data.data;
 
-			myfun(respose);
+			addMails(respose);
 		};
 		return fetch;
 	};
@@ -32,7 +32,7 @@ export default function Sent() {
 		SenderEmail = SenderEmail.replace("@", "").replace(".", "");
 	}
 	const [outbox, setoutbox] = useState([]);
-	const myfun = (respose) => {
+	const addMails = (respose) => {
 		const trasformData = [];
 		for (const key in respose) {
 			trasformData.push({
@@ -47,7 +47,7 @@ export default function Sent() {
 	};
 	const fetch = usehttp(
 		`https://mailbox-client-b17b9-default-rtdb.firebaseio.com/${SenderEmail}/sent.json`,
-		myfun
+		addMails
 	);
 	useEffect(() => {
 		fetch();

@@ -73,7 +73,16 @@ export default function Inbox() {
     datatransformfunction
   );
 
-
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     callData();
+  //   }, 2000);
+  
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, [dispatch, trigger]);
+  
   useEffect(() => {
     callData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
