@@ -35,12 +35,12 @@ const ComposeMail = () => {
 
 		try {
 			await axios.post(
-				`https://mailbox-client-b17b9-default-rtdb.firebaseio.com/${receiverEmail}/inbox.json`,
+				`${process.env.REACT_APP_DB_URL}/${receiverEmail}/inbox.json`,
 				MailData
 			);
 
 			await axios.post(
-				`https://mailbox-client-b17b9-default-rtdb.firebaseio.com/${senderEmail}/sent.json`,
+				`${process.env.REACT_APP_DB_URL}/${senderEmail}/sent.json`,
 				MailData
 			);
 

@@ -24,9 +24,9 @@ const Singup = () => {
 	const signUser = async (email, password) => {
 		let url;
 		if (isLogin) {
-			url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCm6KB2KgpjHCT9OjT3yWYLGc4DMsvP098`;
+			url = `${process.env.REACT_APP_LOGIN_URL}`;
 		} else {
-			url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCm6KB2KgpjHCT9OjT3yWYLGc4DMsvP098`;
+			url = `${process.env.REACT_APP_SINGUP_URL}`;
 		}
 		try {
 			const res = await fetch(url, {
@@ -58,7 +58,6 @@ const Singup = () => {
 	};
 	return (
 		<>
-			
 			<section className={classes.form}>
 				<form onSubmit={submitHandler}>
 					<div className={classes.sigup}>
